@@ -12,13 +12,25 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { useNavigate } from 'react-router-dom';
 
-const pages = ['Главная','Products', 'Pricing', 'Blog'];
+
+
+
+const pages = [
+  { name: 'Главная', path: '/' },
+  { name: 'Магазин', path: '/Product' },
+  { name: 'О компании', path: '/Companies' },
+  { name: 'Корзина', path: '/Basket' }
+];
+
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event:  React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -59,7 +71,7 @@ function ResponsiveAppBar() {
             LOGO
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, justifyContent : 'center' }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -87,10 +99,16 @@ function ResponsiveAppBar() {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+                <MenuItem key={page.name}
+                 onClick={() =>{
+                     navigate(page.path);
+                    handleCloseNavMenu();
+                 }}
+                 sx={{justifyContent : 'center'}}
+                 >
+                  <Typography sx={{ textAlign: 'center' }}>{page.name}</Typography>
                 </MenuItem>
-              ))}ч
+              ))}
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -112,14 +130,17 @@ function ResponsiveAppBar() {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent : "center", gap : '80px' }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.name}
+                onClick={() =>{
+                  navigate(page.path)
+                   handleCloseNavMenu();
+                }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>

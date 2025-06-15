@@ -2,7 +2,9 @@
 
 function Product  ()  {
    return(
-    <h1>Бул Product бөлүмү!</h1>
+   <div>
+       <h1>Бул Product бөлүмү!</h1>
+   </div>
    )
 }
 
