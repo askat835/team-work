@@ -18,6 +18,8 @@ import RestaurantIcon from '@mui/icons-material/Restaurant';
 import { useDispatch, useSelector } from 'react-redux';
 import {type RootState } from '../store/store';
 import { openModal, logout } from '../store/action';
+import  { useEffect } from 'react';
+
 
 const pages = [
   { name: 'Главная', path: '/' },
@@ -32,6 +34,11 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+   useEffect(() => {
+    // Сайт ачылганда логин модалын ач
+    dispatch(openModal());
+  }, [dispatch]);
+
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {

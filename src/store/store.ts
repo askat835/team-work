@@ -11,7 +11,7 @@ interface AuthState {
 }
 
 const initialModalState: ModalState = {
-  isModalOpen: false,
+  isModalOpen: true,
 };
 
 const modalSlice = createSlice({
