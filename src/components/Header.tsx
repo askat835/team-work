@@ -35,7 +35,6 @@ function ResponsiveAppBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
    useEffect(() => {
-    // Сайт ачылганда логин модалын ач
     dispatch(openModal());
   }, [dispatch]);
 
